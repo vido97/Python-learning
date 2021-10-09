@@ -1,3 +1,6 @@
+#The program asks for an integer corresponding to bottle type until the user gives a negative number. 
+#After that, the program prints the money earned from bottles in euros and cents.
+
 def main():
     CAN = 0
     GLASS_BOTTLE = 1
