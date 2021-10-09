@@ -1,18 +1,21 @@
+#The user is thinking of getting contact lenses and wants to know whether it would be better to choose daily lenses or monthly lenses. 
+#The program asks the user how many days per week they use contact lenses, price of the daily lenses (eur per pair), the price of the monthly lenses (eur per pair) and the price of the contact lense solution (eur per 100 ml). 
+#Then, the program calculates how much the daily lenses would cost and how much the monthly lenses would cost per month. 
+
+
 def main():
-    line1=input("How many days a week do you use contact lenses?\n")
-    days=int(line1)
-    line2=input("How much do the daily lenses cost per pair?\n")
-    D=float(line2)
-    line3=input("How much do the monthly lenses cost per pair?\n")
-    M=float(line3)
-    line4=input("How much does the contact lens solution cost? (euros per 100 ml)\n")
-    S=float(line4)
+    days=int(input("How many days a week do you use contact lenses?\n"))
+    daily_price=float(input("How much do the daily lenses cost per pair?\n"))
+    monthly_price=float(input("How much do the monthly lenses cost per pair?\n"))
+    solution_cost=float(input("How much does the contact lens solution cost? (euros per 100 ml)\n"))
 
-    #5ml per day
+    
     #28 days per monnth
-
-    dailycost=4*days*D
-    monthlycost= M+4*days*((5*S)/100)
+    daily_cost=28/7*days*daily_price
+    
+    #only monthly lenses require solution
+    #solution costs 5ml per day
+    monthly_cost= 28/7*days*((5*solution_cost)/100) + monthly_price
 
 
     if (dailycost <= monthlycost) :
