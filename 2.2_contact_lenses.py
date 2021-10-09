@@ -18,13 +18,13 @@ def main():
     monthly_cost= 28/7*days*((5*solution_cost)/100) + monthly_price
 
 
-    if (dailycost <= monthlycost) :
-        print("You should buy daily lenses.\nThey cost",dailycost,"euros per month, which is", monthlycost-dailycost,"euros less than monthly lenses.")
+    if (daily_cost <= monthly_cost) :
+        print("You should buy daily lenses.\nThey cost",daily_cost,"euros per month, which is", monthly_cost-daily_cost,"euros less than monthly lenses.")
 
-    if (dailycost > monthlycost) and (dailycost-monthlycost<=5):
-        print("Daily lenses cost ", dailycost, "euros per month, which is", dailycost - monthlycost,"euros more than monthly lenses.\nIf you prefer convenience and health, daily lenses might still be a better option.")
+    elif (daily_cost > monthly_cost) and (daily_cost-monthly_cost<=5):
+        print("Daily lenses cost ", daily_cost, "euros per month, which is", daily_cost - monthly_cost,"euros more than monthly lenses.\nIf you prefer convenience and health, daily lenses might still be a better option.")
 
-    if (dailycost > monthlycost) and (dailycost-monthlycost>5):
-        print("You should buy monthly lenses.\nThey cost",monthlycost,"euros per month, which is", dailycost-monthlycost,"euros less than daily lenses.")
+    elif (daily_cost > monthly_cost) and (daily_cost-monthly_cost>5):
+        print("You should buy monthly lenses.\nThey cost",monthly_cost,"euros per month, which is", daily_cost-monthly_cost,"euros less than daily lenses.")
 
 main()
