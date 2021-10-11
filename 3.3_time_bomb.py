@@ -13,20 +13,15 @@ def main():
     guesses_left = random.randint(MIN_GUESSES, MAX_GUESSES)
 
     guess = int(input("Enter your guess:\n"))
-    guess_count = 1
+    
+    while guess != right_number and guesses_left > 0:
+        guesses_left = guesses_left -1
 
-    while guess_count >=0:
+        if guesses_left == 0 :
+            print ("KABOOM!\nYou didn't find the right number in time and the bomb exploded.")
 
-        if guess == right_number:
-            print(f"You found the right number in time!\nThe right number was {right_number:d}.")
-            break
-
-        if guess_count == guesses_left:
-            print (f"KABOOM!\nYou didn't find the right number in time and the bomb exploded.\nThe right number was {right_number:d}.")
-            break
-
-        if guess <0 or guess >1000:
-            print("The number is between 0 and 1000.")
+        if guess < MIN_NUMBER  or guess > MAX_NUMBER:
+            print("The number is between", MIN_NUMBER , " and ", MAX_NUMBER)
 
         elif guess > right_number:
             print("The number is smaller.")
@@ -34,10 +29,14 @@ def main():
         elif guess < right_number:
             print("The number is bigger.")
 
-        if guess_count==guesses_left-1:
+        if guesses_left == 1:
             print ("You have 1 guess left!")
 
         guess = int(input("Enter the next guess:\n"))
+        
+    if guess = right_number and guess_left > 0 :
+        print("You found the right number in time!")
+        
+    print(f"The right number was {right_number:d}")
 
-        guess_count += 1
 main()
