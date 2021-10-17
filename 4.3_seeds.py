@@ -22,21 +22,25 @@ def main():
     germination= float(input("Enter the germination rate of the seeds (%):\n"))
 
     if veggie == 1:
-        horizontal = calculate_number_of_seeds(width, height, germination, BEAN_ROW_SPACING, BEAN_SEED_SPACING)
-        vertical = calculate_number_of_seeds(height, width, germination, BEAN_ROW_SPACING, BEAN_SEED_SPACING)
+        row_spacing = BEAN_ROW_SPACING
+        seed_spacing = BEAN_SEED_SPACING
 
     elif veggie == 2:
-        horizontal = calculate_number_of_seeds(width, height, germination, RADISH_ROW_SPACING, RADISH_SEED_SPACING)
-        vertical = calculate_number_of_seeds(height, width, germination, RADISH_ROW_SPACING, RADISH_SEED_SPACING)
-
+        row_spacing = RADISH_ROW_SPACING
+        seed_spacing = RADISH_SEED_SPACING
+       
     else:
-        horizontal = calculate_number_of_seeds(width, height, germination, CARROT_ROW_SPACING, CARROT_SEED_SPACING)
-        vertical = calculate_number_of_seeds(height, width, germination, CARROT_ROW_SPACING, CARROT_SEED_SPACING)
-
+        row_spacing = CARROT_ROW_SPACING
+        seed_spacing = CARROT_SEED_SPACING
+        
+     horizontal = calculate_number_of_seeds(width, height, germination, row_spacing,seed_spacing)
+     vertical = calculate_number_of_seeds(height, width, germination,row_spacing, seed_spacing)
+        
     if vertical > horizontal:
-        print(f"Set the rows perpendicular to the height ({height:d} cm) of the field to get maximum harvest.\nYou need {vertical:d} seeds.")
+        print(f"Set the rows perpendicular to the height ({height:d} cm) of the field to get maximum harvest.")
     elif horizontal > vertical:
-        print(f"Set the rows perpendicular to the width ({width:d} cm) of the field to get maximum harvest.\nYou need {horizontal:d} seeds.")
+        print(f"Set the rows perpendicular to the width ({width:d} cm) of the field to get maximum harvest.")
     else:
-        print(f"Set the rows perpendicular to either the height or to the width of the field to get maximum harvest.\nYou need {horizontal:d} seeds.")
+        print(f"Set the rows perpendicular to either the height or to the width of the field to get maximum harvest.")
+    print(f"You need {horizontal:d} seeds.")
 main()
