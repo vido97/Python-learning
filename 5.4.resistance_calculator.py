@@ -3,76 +3,66 @@
 
 def resistors_in_parallel(resistor_list, target):
     max_difference = 0.02
-    i=0
-    good_combination = []
-    for i in range (len(resistor_list)):
-        first_resistor = resistor_list[i]
-        for second_resistor in resistor_list :
-            if resistor_list.index(second_resistor) != i:
-                resistance = 1/ (1/first_resistor + 1/second_resistor)
-                if (1-max_difference) <= resistance/target <=1:
-                    good_combination.append(resistance)
-                    good_combination.append(first_resistor)
-                    good_combination.append(second_resistor)
+    good_combination= 0.0
+    R1 = 0.0
+    R2 = 0.0
 
-    if len(good_combination) >0:
-        if good_combination[1] > good_combination[2]:
-            return good_combination[0],good_combination[1], good_combination[2]
-        elif good_combination[2] > good_combination[1]:
-            return good_combination[0], good_combination[2], good_combination[1]
-        else:
-            return good_combination[0], good_combination[1], good_combination[2]
+    for i in range (len(resistor_list)):
+       for j in range(i + 1, len(resistor_list)):
+           resistance = 1/ (1/resistor_list[i] + 1/resistor_list[j])
+               if (1-max_difference) <= resistance/target <= (1+max_difference):
+                   if abs(resistance - target) < abs(good_combination - target):
+                    good_combination = resistance
+                    R1 = resistor_list[i]
+                    R2 = resistor_list[j]
+    if R1 > R2:
+        R_first = R1
+        R_second = R2
     else:
-        return 0.0,0.0,0.0
+        R_first = R2
+        R_second = R1
+    return good_combination, R_first, R_second
 
 def resistors_in_series(resistor_list, target):
     max_difference = 0.02
-    i = 0
-    good_combination = []
-    for i in range(len(resistor_list)):
-        first_resistor = resistor_list[i]
-        for second_resistor in resistor_list:
-            if resistor_list.index(second_resistor) != i:
-                resistance = first_resistor + second_resistor
-                if (1 - max_difference) <= resistance / target <= 1:
-                    good_combination.append(resistance)
-                    good_combination.append(first_resistor)
-                    good_combination.append(second_resistor)
-
-    if len(good_combination) > 0:
-        if good_combination[1] > good_combination[2]:
-            return good_combination[0], good_combination[1], good_combination[2]
-        elif good_combination[2] > good_combination[1]:
-            return good_combination[0], good_combination[2], good_combination[1]
-        else:
-            return good_combination[0], good_combination[1], good_combination[2]
+    good_combination= 0.0
+    R1 = 0.0
+    R2 = 0.0
+  
+    for i in range (len(resistor_list)):
+       for j in range(i + 1, len(resistor_list)):
+           resistance = resistor_list[i] + resistor_list[j]
+               if (1-max_difference) <= resistance/target <= (1+max_difference):
+                   if abs(resistance - target) < abs(good_combination - target):
+                    good_combination = resistance
+                    R1 = resistor_list[i]
+                    R2 = resistor_list[j]
+    if R1 > R2:
+        R_first = R1
+        R_second = R2
     else:
-        return 0.0, 0.0, 0.0
+        R_first = R2
+        R_second = R1
+    return good_combination, R_first, R_second
 
 def main():
     target_resistance=float(input("Enter the desired resistance in ohms.\n"))
     registor_list=[]
     registor = float(input("Enter the resistances of the resistors in ohms and stop with a negative value.\n"))
-    if registor > 0:
-        registor_list.append(registor)
     while registor > 0:
         registor = float(input())
         registor_list.append(registor)
     parallel=resistors_in_parallel(registor_list,target_resistance)
     series = resistors_in_series(registor_list,target_resistance)
 
-    if parallel[0] == 0.0 and series[0] == 0.0:
+    if parallel == 0.0 and series == 0.0:
         print ("No suitable resistors.")
     else:
         if (target_resistance - parallel[0]) < (target_resistance - series[0]):
             first_resistor = parallel[1]
             second_resistor = parallel[2]
             type = "parallel"
-        elif (target_resistance - parallel[0]) > (target_resistance - series[0]):
-            first_resistor = series[1]
-            second_resistor = series[2]
-            type = "series"
-        elif parallel[0] == series[0]:
+        elif (target_resistance - parallel[0]) >= (target_resistance - series[0]):
             first_resistor = series[1]
             second_resistor = series[2]
             type = "series"
