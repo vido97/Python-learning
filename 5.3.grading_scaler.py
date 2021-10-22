@@ -12,18 +12,11 @@ def determine_grade_limits(max_points, passing_percentage):
     return point_list
 
 def grade_points(exam_points, grade_limits):
-    if exam_points < grade_limits[0]:
-        return 0
-    elif grade_limits[0] <= exam_points < grade_limits[1]:
-        return 1
-    elif grade_limits[1] <= exam_points < grade_limits[2]:
-        return 2
-    elif grade_limits[2] <= exam_points < grade_limits[3]:
-        return 3
-    elif grade_limits[3] <= exam_points < grade_limits[4]:
-        return 4
-    else:
-        return 5
+     grade = 0
+    for i in range(0, len(grade_limits)):
+        if exam_points >= grade_limits[i]:
+        grade = i + 1
+    return grade
 
 def main():
     max_points = float(input("Enter the maximum points of the exam.\n"))
@@ -38,10 +31,9 @@ def main():
         input_point_list.append(exam_points_f)
 
     while exam_points != "":
-        exam_points = input()
-        if exam_points != "":
-            exam_points_f = float(exam_points)
-            input_point_list.append(exam_points_f)
+       exam_points_f = float(exam_points)
+       input_point_list.append(exam_points_f)
+       exam_points = input()
 
     print(f"Points Grade")
 
