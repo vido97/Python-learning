@@ -1,3 +1,8 @@
+#The user has a sales job, and they get commissions for each sale they make. 
+#For each sale of 500 euros or more, they get a 13.5 % commission and for each sale smaller than that, they get a 6.5 % commission
+#The program  go through the list of sales and calculate and print the commissions for each sale. 
+#At the end, the total amount of commissions is printed.
+
 def main():
     days = int(input("How many sales will you input?\n"))
     sales = [0.0] * days
@@ -11,7 +16,6 @@ def main():
     NORMAL_COMMISSION = 6.5 # %
     BONUS_COMMISSION = 13.5   # %
 
-    # Implement your own code here that goes through the list of
     # sales and calculates and prints the commissions based on those sales.
     total_sum = 0
     for sales_day in sales:
